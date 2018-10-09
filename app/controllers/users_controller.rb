@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @user = UserPresenter.new(user_params[:id])
+    service = UserService.new
+    @user = UserPresenter.new(service.single_user(user_params[:id]))
   end
 
   def index

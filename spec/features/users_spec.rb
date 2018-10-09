@@ -9,7 +9,7 @@ describe 'A guest user' do
     expect(page).to have_css('.email')
     expect(page).to have_content('Email: jbarlet@example.com')
   end
-  it 'visits User index page' do
+  xit 'visits User index page' do
     visit "/users"
 
     within(first(".user")) do
