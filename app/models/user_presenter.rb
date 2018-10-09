@@ -5,5 +5,4 @@ class UserPresenter
     @name = user_data[:name]
     @email = user_data[:email]
   end
-
 end
