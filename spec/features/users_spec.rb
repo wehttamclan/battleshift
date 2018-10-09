@@ -12,7 +12,6 @@ describe 'A guest user' do
   it 'visits User index page' do
     visit "/users"
 
-    expect(page).to have_css(".user", count: 1)
     within(first(".user")) do
       expect(page).to have_css('.name')
       expect(page).to have_content('Josiah Bartlet')

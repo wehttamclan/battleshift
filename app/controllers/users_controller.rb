@@ -1,15 +1,20 @@
 class UsersController < ApplicationController
   def show
-    response = Faraday.get("http://localhost:3000/api/v1/users/#{params[:id]}")
-    user_data = JSON.parse(response.body, symbolize_names: true)
-    @user = UserPresenter.new(user_data)
+    @user = UserPresenter.new(user_params[:id])
   end
 
   def index
-    response = Faraday.get("http://localhost:3000/api/v1/users")
-    users_data = JSON.parse(response.body, symbolize_names: true)
+    users_data = UserService.new.all_users
+
     @users = users_data.map do |user_data|
-      UserPresenter.new(user_data)
-    end
+      UserPresenter.new(user_data[:id])
+    end 
+  end
+
+
+
+  private
+  def user_params
+    params.permit(:id)
   end
 end
