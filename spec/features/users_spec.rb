@@ -29,7 +29,7 @@ describe 'A guest user' do
 
     expect(current_path).to eq '/users/1/edit'
 
-    fill_in 'Email', with: 'josiah@example.com'
+    fill_in 'email', with: 'josiah@example.com'
 
     click_on 'Save'
 

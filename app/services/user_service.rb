@@ -15,4 +15,8 @@ class UserService
   def conn
     Faraday.new(url: "http://localhost:3000")
   end
+
+  def update_email(id, email)
+    conn.put("/api/v1/users/#{id}", email: "#{email}")
+  end
 end
