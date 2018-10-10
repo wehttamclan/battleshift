@@ -1,0 +1,5 @@
+<%= form_tag("/api/v1/users/#{@user.id}", method: :patch) do %>
+  Email:<br>
+  <input type="text" name="Email" placeholder="<%= @user.email %>">
+  <div><%= submit_tag 'Save' %></div>
+<% end %>

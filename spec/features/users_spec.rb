@@ -20,6 +20,7 @@ describe 'A guest user' do
     end
   end
   it 'updates a users email' do
+    create(:user)
     visit '/users'
 
     within(first(".user")) do

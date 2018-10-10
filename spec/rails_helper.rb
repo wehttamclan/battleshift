@@ -8,7 +8,17 @@ require 'rspec/rails'
 require 'support/factory_bot'
 
 SimpleCov.start "rails"
+DatabaseCleaner.strategy = :truncation
 
+RSpec.configure do |c|
+  c.include Capybara::DSL
+  c.before :each do
+    DatabaseCleaner.clean
+  end
+  c.after :each do
+    DatabaseCleaner.clean
+  end
+end
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
