@@ -1,0 +1,12 @@
+Users:
+  <% @users.each do |user| %>
+  <div class="user">
+    <div class="name">
+      Name: <%= user.name %>
+    </div>
+    <div class="email">
+      Email: <%= user.email %>
+    </div>
+  </div>
+  <% end %>
+
