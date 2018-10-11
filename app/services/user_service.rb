@@ -10,10 +10,10 @@ class UserService
 
   def get_json(response)
     JSON.parse(response.body, symbolize_names: true)
-  end 
+  end
 
   def conn
-    Faraday.new(url: "http://localhost:3000")
+    Faraday.new(url: ENV["root_url"])
   end
 
   def update_email(id, email)
