@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8ca354ef94c40b87437da111e1fc31b2"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - f39e2631-811a-420d-b9c4-743f63e98105
+      X-Runtime:
+      - '0.016356'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"id":1,"name":"Josiah Bartlet","email":"jbarlet@example.com"},{"id":2,"name":"Bosiah
+        Jartlet","email":"bjarlet@example.com"}]'
+    http_version: 
+  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+recorded_with: VCR 4.0.0
