@@ -1,10 +1,10 @@
-class UserService
+class BattleshiftService
 
   def all_users
     get_json(conn.get("/api/v1/users"))
   end
 
-  def single_user(id)
+  def find_user(id)
     get_json(conn.get("/api/v1/users/#{id}"))
   end
 
