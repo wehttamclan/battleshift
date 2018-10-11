@@ -1,8 +1,9 @@
 class UserPresenter
-  attr_reader :name, :email
+  attr_reader :id, :name, :email
 
   def initialize(user_data)
-    @name = user_data[:name]
+    @id    = user_data[:id]
+    @name  = user_data[:name]
     @email = user_data[:email]
   end
 end

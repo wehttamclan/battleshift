@@ -6,7 +6,7 @@ Users:
     </div>
     <div class="email">
       Email: <%= user.email %>
+      <%= button_to 'Edit', "/users/#{user.id}/edit", method: :get %>
     </div>
   </div>
   <% end %>
-
