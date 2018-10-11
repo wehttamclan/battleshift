@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: UTF-8
+      string: email=josiah%40example.com
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - 9efb901d-2a1c-434e-9f8f-24d267db9e9c
+      X-Runtime:
+      - '0.009429'
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"a51a15a3c1a744c42334e37f2fd62eef"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0abb0425-f8dd-46d3-9cc2-e5bf56dae33c
+      X-Runtime:
+      - '0.002949'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"}'
+    http_version: 
+  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8c38b8c5e3a69c95fc387f8cfeb61909"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - c3b47b44-dc72-499b-a6ca-b5e5d90c2fe3
+      X-Runtime:
+      - '0.004991'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"},{"id":2,"name":"Bosiah
+        Jartlet","email":"bjarlet@example.com"}]'
+    http_version: 
+  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+recorded_with: VCR 4.0.0
