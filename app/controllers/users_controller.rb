@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def show
-    user_data = service.find_user(params[:id])
-    @user = UserPresenter.new(user_data)
+    @user = get_user
   end
 
   def index
@@ -11,17 +10,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user_data = service.find_user(params[:id]) # don't call single user, maybe find
-    @user = UserPresenter.new(user_data)
+    @user = get_user
   end
   
   def update
-    id        = params[:id]
-    new_email = user_params[:email]
-    service.update_email(id, new_email)
-    user_data = service.find_user(id)
-    user = UserPresenter.new(user_data)
-    redirect_to '/users', notice: "Successfully updated #{user.name}."
+    service.update_email(params[:id], user_params[:email])
+    redirect_to '/users', notice: "Successfully updated #{get_user.name}."
   end
 
   private
@@ -31,5 +25,10 @@ class UsersController < ApplicationController
 
   def service
     BattleshiftService.new
+  end
+
+  def get_user
+    user = service.find_user(params[:id])
+    UserPresenter.new(user)
   end
 end
