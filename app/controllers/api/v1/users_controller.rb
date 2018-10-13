@@ -1,5 +1,3 @@
-require 'securerandom'
-
 module Api
   module V1
     class UsersController < ApiController
@@ -17,7 +15,9 @@ module Api
       end
 
       def create
-        User.new(user_params)
+        user = User.new(user_params)
+        user.save
+        ActivationNotifierMailer.inform(user).deliver_now
       end
 
       private
