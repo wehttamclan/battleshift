@@ -1,3 +1,5 @@
+require 'securerandom'
+
 player_1_board = Board.new(4)
 player_2_board = Board.new(4)
 

@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe "I Successfully make an account" do
-  it "sends an activation email" do
-    
-  end
   describe "User clicks activation link" do
     it "should activate account" do
 
