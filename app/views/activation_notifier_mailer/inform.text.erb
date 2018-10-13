@@ -1,1 +1,1 @@
-Click <%= link_to "here", "/activation", {api_key: @user.api_key} %> to activate your goods ;)
+Click <%= link_to "here", "#{ENV["root_url"]}/activation", {api_key: @user.api_key} %> to activate your goods ;)
