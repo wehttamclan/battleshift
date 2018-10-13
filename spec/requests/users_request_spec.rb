@@ -22,15 +22,14 @@ describe "users api endpoints" do
 
   context "GET /api/v1/users/:id" do
     it "returns a specific user" do
-      cj   = User.create!(name: "C.J. Cregg", id: 111)
-      toby = User.create!(name: "Toby Ziegler", id: 222)
+      cj   = User.create!(name: "C.J. Cregg", id: 111, password: "12345")
+      toby = User.create!(name: "Toby Ziegler", id: 222, password: "12345")
 
       get "/api/v1/users/#{cj.id}"
 
       expect(response.status).to be 200
 
       returned_user = JSON.parse(response.body, symbolize_names: true)
-
       expect(returned_user.keys.count).to eq(3)
       expect(returned_user).to have_key(:name)
       expect(returned_user).to have_key(:email)

@@ -19,4 +19,8 @@ class BattleshiftService
   def update_email(id, email)
     conn.put("/api/v1/users/#{id}", email: "#{email}")
   end
+
+  def create_user(params)
+    conn.post("/api/v1/users", params)
+  end
 end

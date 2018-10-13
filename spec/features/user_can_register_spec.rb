@@ -19,7 +19,9 @@ describe "As a guest User" do
       fill_in 'password', with: '12345'
       fill_in 'password_confirmation', with: '12345'
       # And I click submit
-      click_on "Submit"
+      VCR.use_cassette("create user", :allow_unused_http_interactions => false) do
+        click_on "Submit"
+      end
       # Then I should be redirected to "/dashboard"
       expect(current_path).to eq("/dashboard")
       # And I should see a message that says "Logged in as <SOME_NAME>"
