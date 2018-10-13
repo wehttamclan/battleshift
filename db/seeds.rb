@@ -1,3 +1,5 @@
+require 'securerandom'
+
 player_1_board = Board.new(4)
 player_2_board = Board.new(4)
 
@@ -37,5 +39,13 @@ game_attributes = {
 game = Game.new(game_attributes)
 game.save!
 
-User.create!(name: "Josiah Bartlet", email: "jbarlet@example.com", address: "1600 Pennsylvania Ave NW, Washington, DC 20500")
-User.create!(name: "Bosiah Jartlet", email: "bjarlet@example.com", address: "1600 Chennsylvania Ave NW, Washington, DC 20501")
+User.create!( name: "Josiah Bartlet",
+              email: "jbarlet@example.com",
+              address: "1600 Pennsylvania Ave NW, Washington, DC 20500",
+              password: "12345"
+            )
+User.create!(name: "Bosiah Jartlet",
+             email: "bjarlet@example.com",
+             address: "1600 Chennsylvania Ave NW, Washington, DC 20501",
+             password: "12345"
+           )
