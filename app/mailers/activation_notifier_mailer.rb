@@ -1,0 +1,2 @@
+class ActivationNotifierMailer < ApplicationMailer
+end
