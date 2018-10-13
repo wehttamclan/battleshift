@@ -6,16 +6,19 @@ class UsersController < ApplicationController
   def index
     @users = service.all_users.map do |user_data|
       UserPresenter.new(user_data)
-    end 
+    end
   end
 
   def edit
     @user = get_user
   end
-  
+
   def update
     service.update_email(params[:id], user_params[:email])
     redirect_to '/users', notice: "Successfully updated #{get_user.name}."
+  end
+
+  def new
   end
 
   private

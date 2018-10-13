@@ -1,0 +1,8 @@
+<%= form_tag("/users", method: :post) do %>
+  Email:<br>
+  <input type="text" name="email" placeholder="your@email.com">
+  <input type="text" name="name" placeholder="Your Name">
+  <input type="text" name="password" placeholder="Password">
+  <input type="text" name="password_confirmation" placeholder="Retype Password">
+  <div><%= submit_tag 'Submit' %></div>
+<% end %>
