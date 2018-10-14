@@ -15,8 +15,13 @@ describe 'POST /api/v1/games' do
       expect(Game.count).to eq 0
 
       post '/api/v1/games', params: json_payload, headers: headers
-      
+      game = JSON.parse(response.body, symbolize_names: true)
+
       expect(Game.count).to eq 1
+      expect(response).to be_successful
+      expect(game).to have_key(:player_1_board)
+      expect(game).to have_key(:current_turn)
+      expect(game[:player_1_board]).to have_key(:rows)
     end
   end
 end
