@@ -15,18 +15,14 @@ module Api
         opponent_email = params[:opponent_email]
 
         user = User.find_by_api_key(api_key)
-
+        
         game_attributes = {
-          player_1_board:
-          player_2_board:
-          winner:
-          player_1_turns:
-          player_2_turns:
-          current_turn:
+          player_1_board: Board.new(4),
+          player_2_board: Board.new(4)
         }
-
-        Game.new(game_attributes)
-        byebug
+        
+        game = Game.create(game_attributes)
+        # byebug
       end
 
     end
