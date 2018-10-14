@@ -20,9 +20,8 @@ module Api
           player_1_board: Board.new(4),
           player_2_board: Board.new(4)
         }
-        
-        game = Game.create(game_attributes)
-        # byebug
+
+        render json: Game.create(game_attributes)
       end
 
     end
