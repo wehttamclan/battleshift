@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = get_user
+    @user = get_user(params[:id])
   end
 
   def index
@@ -10,12 +10,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = get_user
+    @user = get_user(params[:id])
   end
 
   def update
     service.update_email(params[:id], user_params[:email])
-    redirect_to '/users', notice: "Successfully updated #{get_user.name}."
+    redirect_to '/users', notice: "Successfully updated #{get_user(params[:id]).name}."
   end
 
   def new
@@ -30,15 +30,6 @@ class UsersController < ApplicationController
   private
   def user_params
     params.permit(:name, :email, :password)
-  end
-
-  def service
-    BattleshiftService.new
-  end
-
-  def get_user
-    user = service.find_user(params[:id])
-    UserPresenter.new(user)
   end
 
 end
