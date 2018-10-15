@@ -20,7 +20,7 @@ class Api::V1::Games::ShipsController < ApiController
     board.ship_math(ship_params[:ship_size])
 
     option = " with a size of #{board.ship_places}"
-    message = game.messages=("Successfully placed ship with a size of #{ship_params[:ship_size]}. You have #{board.ship_count} ship(s) to place#{option if board.ship_count > 0 }.")
+    message = "Successfully placed ship with a size of #{ship_params[:ship_size]}. You have #{board.ship_count} ship(s) to place#{option if board.ship_count > 0 }."
 
     game.save
 
