@@ -16,7 +16,7 @@ module Api
 
         user = User.find_by_api_key(api_key)
         opponent = User.find_by_email(opponent_email) || false
-        
+
         game_attributes = {
           player_1_board: Board.new(4),
           player_2_board: Board.new(4),
@@ -26,7 +26,6 @@ module Api
 
         render json: Game.create(game_attributes)
       end
-
     end
   end
 end

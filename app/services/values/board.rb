@@ -1,10 +1,14 @@
 class Board
   attr_reader :length,
-              :board
+              :board,
+              :ship_places,
+              :ship_count
 
   def initialize(length)
     @length = length
     @board = create_grid
+    @ship_places = 5
+    @ship_count = 2
   end
 
   def get_row_letters
@@ -202,5 +206,9 @@ class Board
   def first_column?(coordinate)
     get_column(coordinate) == "1"
   end
-end
 
+  def ship_math(ship_size)
+    @ship_places -= ship_size
+    @ship_count -= 1
+  end
+end
