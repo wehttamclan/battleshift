@@ -1,7 +1,13 @@
 class Api::V1::Games::ShipsController < ApiController
   def create
     game = Game.find(params[:game_id])
-    board = game.player_1_board
+
+    if request.headers["X-API-Key"] == game.player_1_api_key
+      board = game.player_1_board
+    elsif request.headers["X-API-Key"] == game.player_2_api_key
+      board = game.player_2_board
+    end
+
     ship = Ship.new(ship_params[:ship_size])
     
     ship.place(ship_params[:start_space], ship_params[:end_space])
@@ -10,7 +16,7 @@ class Api::V1::Games::ShipsController < ApiController
     game.save
     
     render json: game
-    byebug
+
   end
 
   private

@@ -1,22 +1,22 @@
 require 'rails_helper'
 
-
 describe 'POST /api/v1/games/:id/ships' do
   context 'to place a ship' do
+    before :each do
+      @user_1 = create(:user, activated: 1, email: '1_@email.com')
+      @user_2 = create(:user, activated: 1, email: '2_@email.com')
+      @game = create(:game, player_1_api_key: @user_1.api_key, player_2_api_key: @user_2.api_key)
+    end
+    
     it 'and return messages' do
-      user_1 = create(:user, activated: 1)
-      user_2 = create(:user, activated: 1, email: 'opp@email.com')
-      
-      game = create(:game)
-
       headers = { "CONTENT_TYPE" => "application/json",
-                  "X-API-Key" => user_1.api_key}
+                  "X-API-Key" => @user_1.api_key}
 
       ship_1_payload = {ship_size: 3,
                         start_space: "A1",
                         end_space: "A3"}.to_json
 
-      post "/api/v1/games/#{game.id}/ships", params: ship_1_payload, headers: headers
+      post "/api/v1/games/#{@game.id}/ships", params: ship_1_payload, headers: headers
       
       game = JSON.parse(response.body, symbolize_names: true)
 
