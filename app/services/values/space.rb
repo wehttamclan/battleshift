@@ -31,4 +31,8 @@ class Space
   def attacked?
     status == "Attacked"
   end
+
+  def hit?
+    status == "Hit"
+  end
 end

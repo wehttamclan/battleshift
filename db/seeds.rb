@@ -43,7 +43,7 @@ game_attributes = {
   player_2_board: player_2_board,
   player_1_turns: 0,
   player_2_turns: 0,
-  current_turn: "challenger",
+  current_turn: "player_1",
   player_1_api_key: user_1.api_key,
   player_2_api_key: user_2.api_key
 }

@@ -212,7 +212,7 @@ class Board
   end
 
   def contains_hit?(coordinate)
-    space_attacked?(coordinate) && space_occupied?(coordinate)
+    get_space(coordinate).hit?
   end
 
   def contains_miss?(coordinate)

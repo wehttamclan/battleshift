@@ -8,6 +8,7 @@ module Api
           if player_1_move? || player_2_move?
               if shot_on_board?
                 make_move
+                render json: @game, message: "#{@turn_processor.message}#{did_it_sink}"
               else
                 render json: @game, status: 400, message: "Invalid coordinates"
               end
@@ -21,7 +22,6 @@ module Api
         def make_move
           @turn_processor = TurnProcessor.new(@game, params[:shot][:target])
           @turn_processor.run!
-          render json: @game, message: "#{@turn_processor.message}#{did_it_sink}"
         end
 
         def player_1_move?
