@@ -55,11 +55,9 @@ module Api
         end
 
         def board_checking(board)
-          board.ship_hit(params[:shot][:target])
-          if board.ships.all? { |ship| ship == [] }
+          if board.ships.all? { |ship| ship.all? { |coord| board.contains_hit?(coord) } }
             " Battlship Sunk. Game Over"
-          elsif board.ships.any? { |ship| ship == [] }
-            board.ships.delete([])
+          elsif board.ships.any? { |ship| ship.all? { |coord| board.contains_hit?(coord) } }
             " Battlship Sunk."
           end
         end

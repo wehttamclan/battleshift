@@ -27,5 +27,8 @@ class Space
   def not_attacked?
     status == "Not Attacked"
   end
-end
 
+  def attacked?
+    status == "Attacked"
+  end
+end

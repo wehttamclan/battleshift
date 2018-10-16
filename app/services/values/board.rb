@@ -13,7 +13,6 @@ class Board
     @ship_places = 5
     @ship_count = 2
     @ships = []
-    @hits = []
   end
 
   def ships
@@ -121,6 +120,13 @@ class Board
     get_space(coordinate).occupied = true
   end
 
+  def get_space(coordinate)
+    x = @board.flatten.select do |hash|
+      hash.first.first == coordinate
+    end
+    x.first.first.last
+  end
+
   # def set_spaces_occupied(coordinate1, coordinate2)
     # same_row?(coordinate1, coordinate2) ? set_row_spaces_occupied(coordinate1, coordinate2) : set_column_spaces_occupied(coordinate1, coordinate2)
   # end
@@ -202,7 +208,7 @@ class Board
   end
 
   def space_attacked?(coordinate)
-    get_space(coordinate).attacked
+    get_space(coordinate).attacked?
   end
 
   def contains_hit?(coordinate)
@@ -220,13 +226,6 @@ class Board
   def ship_math(ship_size)
     @ship_places -= ship_size
     @ship_count -= 1
-  end
-
-  def ship_hit(coord)
-    @ships.map do |ship|
-      ship.delete(coord)
-      ship
-    end
   end
 
 end
