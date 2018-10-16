@@ -31,12 +31,19 @@ ShipPlacer.new(board: player_2_board,
 user_1 = User.create!(name: "Josiah Bartlet",
                       email: "jbarlet@example.com",
                       address: "1600 Pennsylvania Ave NW, Washington, DC 20500",
-                      password: "12345")
+                      password: "12345",
+                      activated: "active"
+                    )
 
 user_2 = User.create!(name: "Bosiah Jartlet",
                       email: "bjarlet@example.com",
                       address: "1600 Chennsylvania Ave NW, Washington, DC 20501",
-                      password: "12345")
+                      password: "12345",
+                      activated: "active"
+                    )
+
+user_1.update(api_key: "player_1")
+user_2.update(api_key: "player_2")
 
 game_attributes = {
   player_1_board: player_1_board,

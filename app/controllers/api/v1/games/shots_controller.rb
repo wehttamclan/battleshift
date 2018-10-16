@@ -3,6 +3,10 @@ module Api
     module Games
       class ShotsController < ApiController
         def create
+          # IT CAN'T WORK WITH INACTIVE PLAYERS
+          # NEEDS TO PLAY WITH COMPUTER
+          # NEEDS 401 error IF API IS INVALID
+          # NEEDS 401 error IF GAME IS NOT YOURS
           @game = Game.find(params[:game_id])
           if @game.game_over == false
             if player_1_move? || player_2_move?
