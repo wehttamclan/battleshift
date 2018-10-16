@@ -2,9 +2,11 @@ class Board
   attr_reader :length,
               :board,
               :ship_places,
-              :ship_count
+              :ship_count,
+              :all_coordinates
 
   def initialize(length)
+    @all_coordinates = []
     @length = length
     @board = create_grid
     @ship_places = 5
@@ -41,6 +43,7 @@ class Board
     spaces = create_spaces
     assign_spaces_to_rows.map do |row|
       row.each.with_index do |coordinates, index|
+        @all_coordinates << row[index]
         row[index] = {coordinates => spaces[coordinates]}
       end
     end
@@ -211,4 +214,5 @@ class Board
     @ship_places -= ship_size
     @ship_count -= 1
   end
+
 end
