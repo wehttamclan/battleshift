@@ -56,6 +56,7 @@ module Api
           end
         end
 
+        # CHECK BOARD STATUS, maybe move to board model
         def did_it_sink
           if @turn_processor.hit == 1
             if @game.current_turn == "player_1"
