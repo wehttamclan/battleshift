@@ -1,8 +1,10 @@
 class TurnProcessor
+  attr_reader :hit
   def initialize(game, target)
     @game   = game
     @target = target
     @messages = []
+    @hit = 1
   end
 
   def run!
@@ -26,12 +28,14 @@ class TurnProcessor
     result = Shooter.fire!(board: opposition.board, target: target)
     @messages << "Your shot resulted in a #{result}."
     game.player_1_turns += 1
+    @hit = 1 if result == "Hit"
   end
 
   def ai_attack_back
     result = AiSpaceSelector.new(player.board).fire!
     @messages << "The computer's shot resulted in a #{result}."
     game.player_2_turns += 1
+    @hit = 1 if result == "Hit"
   end
 
   def attack
@@ -50,10 +54,6 @@ class TurnProcessor
     elsif game.current_turn == "player_2"
       game.current_turn = "player_1"
     end
-  end
-
-  def valid_move?
-    
   end
 
   def player

@@ -15,7 +15,7 @@ class Api::V1::Games::ShipsController < ApiController
   end
 
   private
-  
+
   def ship_params
     params.require(:ship).permit(:ship_size, :start_space, :end_space)
   end
@@ -34,6 +34,7 @@ class Api::V1::Games::ShipsController < ApiController
                     start_space: @ship.start_space,
                     end_space:   @ship.end_space
                   ).run
+    @board.ships << @board.get_spaces_between(@ship.start_space, @ship.end_space)
   end
 
   def ship_message

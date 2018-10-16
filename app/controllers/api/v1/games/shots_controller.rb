@@ -19,9 +19,9 @@ module Api
         private
 
         def make_move
-          turn_processor = TurnProcessor.new(@game, params[:shot][:target])
-          turn_processor.run!
-          render json: @game, message: turn_processor.message
+          @turn_processor = TurnProcessor.new(@game, params[:shot][:target])
+          @turn_processor.run!
+          render json: @game, message: "#{@turn_processor.message}#{did_it_sink}"
         end
 
         def player_1_move?
@@ -39,6 +39,29 @@ module Api
           elsif @game.current_turn == "player_2"
             game_coords = @game.player_1_board.all_coordinates
             game_coords.include?(params[:shot][:target])
+          end
+        end
+
+        def did_it_sink
+          if @turn_processor.hit == 1
+            if @game.current_turn == "player_1"
+              board = @game.player_2_board
+              board_checking(board)
+            elsif @game.current_turn == "player_2"
+              board = @game.player_1_board
+              board_checking(board)
+            end
+          end
+        end
+
+        def board_checking(board)
+          board.ships.each do |ship|
+            ship.delete(params[:shot][:target])
+          end
+          if board.ships.all? { |ship| ship == [] }
+            " Battlship Sunk. Game Over"
+          elsif board.ships.any? { |ship| ship == [] }
+            " Battlship Sunk."
           end
         end
       end
