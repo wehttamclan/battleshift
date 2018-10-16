@@ -25,6 +25,7 @@ group :development, :test do
   gem 'mailcatcher'
   gem 'faker'
   gem 'awesome_print'
+  gem 'pry'
 end
 
 group :test do

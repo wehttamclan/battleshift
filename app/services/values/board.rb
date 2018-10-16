@@ -5,7 +5,6 @@ class Board
               :ship_count,
               :all_coordinates
 
-  attr_accessor :ships
 
   def initialize(length)
     @all_coordinates = []
@@ -14,6 +13,11 @@ class Board
     @ship_places = 5
     @ship_count = 2
     @ships = []
+    @hits = []
+  end
+
+  def ships
+    @ships
   end
 
   def get_row_letters
@@ -216,6 +220,13 @@ class Board
   def ship_math(ship_size)
     @ship_places -= ship_size
     @ship_count -= 1
+  end
+
+  def ship_hit(coord)
+    @ships.map do |ship|
+      ship.delete(coord)
+      ship
+    end
   end
 
 end

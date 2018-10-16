@@ -4,7 +4,7 @@ class TurnProcessor
     @game   = game
     @target = target
     @messages = []
-    @hit = 1
+    @hit = 0
   end
 
   def run!
@@ -44,7 +44,6 @@ class TurnProcessor
     elsif game.current_turn == "player_2"
       attack_opponent(player)
     end
-
     next_turn
   end
 
