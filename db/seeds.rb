@@ -28,24 +28,25 @@ ShipPlacer.new(board: player_2_board,
                start_space: "B1",
                end_space: "D1").run
 
+user_1 = User.create!(name: "Josiah Bartlet",
+                      email: "jbarlet@example.com",
+                      address: "1600 Pennsylvania Ave NW, Washington, DC 20500",
+                      password: "12345")
+
+user_2 = User.create!(name: "Bosiah Jartlet",
+                      email: "bjarlet@example.com",
+                      address: "1600 Chennsylvania Ave NW, Washington, DC 20501",
+                      password: "12345")
+
 game_attributes = {
   player_1_board: player_1_board,
   player_2_board: player_2_board,
   player_1_turns: 0,
   player_2_turns: 0,
-  current_turn: "challenger"
+  current_turn: "player_1",
+  player_1_api_key: user_1.api_key,
+  player_2_api_key: user_2.api_key
 }
 
 game = Game.new(game_attributes)
 game.save!
-
-User.create!( name: "Josiah Bartlet",
-              email: "jbarlet@example.com",
-              address: "1600 Pennsylvania Ave NW, Washington, DC 20500",
-              password: "12345"
-            )
-User.create!(name: "Bosiah Jartlet",
-             email: "bjarlet@example.com",
-             address: "1600 Chennsylvania Ave NW, Washington, DC 20501",
-             password: "12345"
-           )

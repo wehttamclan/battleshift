@@ -1,10 +1,22 @@
 class Board
   attr_reader :length,
-              :board
+              :board,
+              :ship_places,
+              :ship_count,
+              :all_coordinates
+
 
   def initialize(length)
+    @all_coordinates = []
     @length = length
     @board = create_grid
+    @ship_places = 5
+    @ship_count = 2
+    @ships = []
+  end
+
+  def ships
+    @ships
   end
 
   def get_row_letters
@@ -37,6 +49,7 @@ class Board
     spaces = create_spaces
     assign_spaces_to_rows.map do |row|
       row.each.with_index do |coordinates, index|
+        @all_coordinates << row[index]
         row[index] = {coordinates => spaces[coordinates]}
       end
     end
@@ -55,10 +68,10 @@ class Board
     return get_column_spaces_between(coordinate1, coordinate2) if same_column?(coordinate1, coordinate2)
   end
 
-  # def get_row_spaces_between(coordinate1, coordinate2)
-  #   columns = (get_smaller_column(coordinate1, coordinate2)..get_bigger_column(coordinate1, coordinate2)).to_a
-  #   columns.map { |column| get_row(coordinate1) + column }
-  # end
+  def get_row_spaces_between(coordinate1, coordinate2)
+    columns = (get_smaller_column(coordinate1, coordinate2)..get_bigger_column(coordinate1, coordinate2)).to_a
+    columns.map { |column| get_row(coordinate1) + column }
+  end
 
   def get_column_spaces_between(coordinate1, coordinate2)
     rows = (get_smaller_row(coordinate1, coordinate2)..get_bigger_row(coordinate1, coordinate2)).to_a
@@ -105,6 +118,13 @@ class Board
 
   def set_space_occupied(coordinate)
     get_space(coordinate).occupied = true
+  end
+
+  def get_space(coordinate)
+    x = @board.flatten.select do |hash|
+      hash.first.first == coordinate
+    end
+    x.first.first.last
   end
 
   # def set_spaces_occupied(coordinate1, coordinate2)
@@ -188,11 +208,11 @@ class Board
   end
 
   def space_attacked?(coordinate)
-    get_space(coordinate).attacked
+    get_space(coordinate).attacked?
   end
 
   def contains_hit?(coordinate)
-    space_attacked?(coordinate) && space_occupied?(coordinate)
+    get_space(coordinate).hit?
   end
 
   def contains_miss?(coordinate)
@@ -202,5 +222,10 @@ class Board
   def first_column?(coordinate)
     get_column(coordinate) == "1"
   end
-end
 
+  def ship_math(ship_size)
+    @ship_places -= ship_size
+    @ship_count -= 1
+  end
+
+end
