@@ -21,7 +21,7 @@ module Api
                   render json: @game, message: "#{@turn_processor.message}#{did_it_sink}"
                 end
               else
-                render json: @game, status: 400, message: "Invalid coordinates"
+                render json: @game, status: 400, message: "Invalid coordinates."
               end
             else
               render json: @game, status: 400, message: "Invalid move. It's your opponent's turn"

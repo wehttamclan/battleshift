@@ -20,7 +20,7 @@ describe 'POST /api/v1/games/:id/ships' do
       
       game = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response.status).to eq 204
+      expect(response).to be_successful
       expect(game).to have_key(:player_1_board)
       expect(game).to have_key(:current_turn)
     end
