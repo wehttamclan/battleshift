@@ -23,6 +23,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'mailcatcher'
+  gem 'faker'
+  gem 'awesome_print'
+  gem 'pry'
 end
 
 group :test do
