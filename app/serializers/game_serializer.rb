@@ -15,7 +15,7 @@ class GameSerializer < ActiveModel::Serializer
     @instance_options[:message]
   end
 
-  def winner
-    @instance_options[:winner]
-  end
+  # def winner
+  #   @instance_options[:winner]
+  # end
 end
