@@ -125,12 +125,12 @@ class Board
   #   get_space(coordinate).occupied = true
   # end
 
-  # def get_space(coordinate)
-  #   x = @board.flatten.select do |hash|
-  #     hash.first.first == coordinate
-  #   end
-  #   x.first.first.last
-  # end
+  def get_space(coordinate)
+    x = @board.flatten.select do |hash|
+      hash.first.first == coordinate
+    end
+    x.first.first.last
+  end
 
   # def set_spaces_occupied(coordinate1, coordinate2)
     # same_row?(coordinate1, coordinate2) ? set_row_spaces_occupied(coordinate1, coordinate2) : set_column_spaces_occupied(coordinate1, coordinate2)
@@ -205,21 +205,21 @@ class Board
     get_row(coordinate1) == get_row(coordinate2)
   end
 
-  # def same_column?(coordinate1, coordinate2)
-  #   get_column(coordinate1) == get_column(coordinate2)
-  # end
+  def same_column?(coordinate1, coordinate2)
+    get_column(coordinate1) == get_column(coordinate2)
+  end
 
-  # def space_occupied?(coordinate)
-  #    get_space(coordinate).occupied
-  # end
+  def space_occupied?(coordinate)
+     get_space(coordinate).occupied
+  end
 
-  # def space_attacked?(coordinate)
-  #   get_space(coordinate).attacked?
-  # end
+  def space_attacked?(coordinate)
+    get_space(coordinate).attacked?
+  end
 
-  # def contains_hit?(coordinate)
-  #   get_space(coordinate).hit?
-  # end
+  def contains_hit?(coordinate)
+    get_space(coordinate).hit?
+  end
 
   def contains_miss?(coordinate)
     space_attacked?(coordinate) && !space_occupied?(coordinate)
