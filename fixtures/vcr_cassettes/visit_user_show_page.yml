@@ -25,14 +25,14 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 3e7db25c-273c-4866-b8b6-435b1d64eb1a
+      - f0e1de42-b53b-4e64-ac8f-d2e4f3f9809e
       X-Runtime:
-      - '0.236576'
+      - '0.032534'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"id":1,"name":"Josiah Bartlet","email":"jbarlet@example.com"}'
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+  recorded_at: Thu, 18 Oct 2018 09:31:41 GMT
 recorded_with: VCR 4.0.0

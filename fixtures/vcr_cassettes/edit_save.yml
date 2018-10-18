@@ -23,14 +23,14 @@ http_interactions:
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 9efb901d-2a1c-434e-9f8f-24d267db9e9c
+      - d95e2c2a-b14f-470b-9220-65e4f8663966
       X-Runtime:
-      - '0.009429'
+      - '0.006881'
     body:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+  recorded_at: Thu, 18 Oct 2018 09:31:42 GMT
 - request:
     method: get
     uri: http://localhost:3000/api/v1/users/1
@@ -56,16 +56,16 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 0abb0425-f8dd-46d3-9cc2-e5bf56dae33c
+      - cffa502a-fcf4-4d33-a926-541973035a32
       X-Runtime:
-      - '0.002949'
+      - '0.005758'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"}'
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+  recorded_at: Thu, 18 Oct 2018 09:31:42 GMT
 - request:
     method: get
     uri: http://localhost:3000/api/v1/users
@@ -87,19 +87,19 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8c38b8c5e3a69c95fc387f8cfeb61909"
+      - W/"f7ae5a279873191d09fc85fe92686358"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - c3b47b44-dc72-499b-a6ca-b5e5d90c2fe3
+      - 72691810-8800-4309-9e8f-0527f88606e3
       X-Runtime:
-      - '0.004991'
+      - '0.003404'
       Transfer-Encoding:
       - chunked
     body:
       encoding: UTF-8
       string: '[{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"},{"id":2,"name":"Bosiah
-        Jartlet","email":"bjarlet@example.com"}]'
+        Jartlet","email":"bjarlet@example.com"},{"id":3,"name":"Brayden","email":"stalin@example.com"}]'
     http_version: 
-  recorded_at: Thu, 11 Oct 2018 17:25:53 GMT
+  recorded_at: Thu, 18 Oct 2018 09:31:42 GMT
 recorded_with: VCR 4.0.0
