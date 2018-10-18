@@ -9,6 +9,6 @@ class ActivateController < ApplicationController
 
   def activate_user
     @user = User.find_by_api_key(params[:api_key])
-    @user.update(activated: 1)
+    @user.update_attribute(:activated, 1)
   end
 end

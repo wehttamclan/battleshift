@@ -13,6 +13,7 @@ class TurnProcessor
     if @game.player_2_api_key != nil
       begin
         attack # if valid_move?
+        did_it_sink
         @game.save!
       rescue InvalidAttack => e
         @messages << e.message
@@ -28,6 +29,7 @@ class TurnProcessor
   end
 
   def process_turn
+    if is_in_game?
       if @game.game_over == false
         if player_1_move? || player_2_move?
           if shot_on_board?
@@ -45,6 +47,10 @@ class TurnProcessor
         @status = 400
         @messages << "Invalid move. Game over."
       end
+    else
+      @status = 401
+      @messages << "Unauthorized"
+    end
   end
 
 
@@ -54,6 +60,10 @@ class TurnProcessor
 
   def player_2_move?
     @game.current_turn == "player_2" && key == @game.player_2_api_key
+  end
+
+  def is_in_game?
+    @key == @game.player_1_api_key || @key == @game.player_2_api_key
   end
 
   def shot_on_board?
@@ -83,7 +93,7 @@ class TurnProcessor
     ship = board.locate_space(@target).contents
     ship.attack!
     @messages << "Battleship sunk." if ship.is_sunk?
-    @messages << "Game Over." if board.all_sunk?
+    @messages << "Game over." if board.all_sunk?
   end
 
   private
