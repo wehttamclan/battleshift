@@ -27,37 +27,25 @@ class TurnProcessor
       if player_1_move? || player_2_move?
         if shot_on_board?
           run!
-          # make_move
           if did_it_sink == "Battleship sunk. Game over."
             game.game_over = true
             user = User.find_by_api_key(key)
             game.update_attribute(:winner, user.email)
             game.save!
-            # render json: game, message: "#{@turn_processor.message}#{did_it_sink}", winner: game.winner
-          # else
-            # render json: game, message: "#{@turn_processor.message}#{did_it_sink}"
           end
         else
           @status = 400
           @messages << "Invalid coordinates."
-          # render json: game, status: 400, message: "Invalid coordinates."
         end
       else
         @status = 400
         @messages << "Invalid move. It's your opponent's turn"
-        # render json: game, status: 400, message: "Invalid move. It's your opponent's turn"
       end
     else
       @status = 400
       @messages << "Invalid move. Game over."
-      # render json: game, status: 400, message: "Invalid move. Game over.", winner: game.winner
     end
   end
-
-  # def make_move
-  #   @turn_processor = TurnProcessor.new(game, key)
-  #   @turn_processor.run!
-  # end
 
   def player_1_move?
     game.current_turn == "player_1" && key == game.player_1_api_key
