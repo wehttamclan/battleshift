@@ -28,21 +28,25 @@ class TurnProcessor
   end
 
   def process_turn
-    if @game.game_over == false
-      if player_1_move? || player_2_move?
-        if shot_on_board?
-          run!
-          set_winner if did_it_sink == "Battleship sunk. Game over."
+      if @game.game_over == false
+        if player_1_move? || player_2_move?
+          if shot_on_board?
+            run!
+            set_winner if message == "Your shot resulted in a Hit. Battleship sunk. Game over."
+          else
+            @status = 400
+            @messages << "Invalid coordinates."
+          end
         else
-          @status = 400; @messages << "Invalid coordinates."
+          @status = 400
+          @messages << "Invalid move. It's your opponent's turn"
         end
       else
-        @status = 400; @messages << "Invalid move. It's your opponent's turn"
+        @status = 400
+        @messages << "Invalid move. Game over."
       end
-    else
-      @status = 400; @messages << "Invalid move. Game over."
-    end
   end
+
 
   def player_1_move?
     @game.current_turn == "player_1" && key == @game.player_1_api_key
@@ -77,6 +81,7 @@ class TurnProcessor
 
   def board_checking(board)
     ship = board.locate_space(@target).contents
+    ship.attack!
     @messages << "Battleship sunk." if ship.is_sunk?
     @messages << "Game Over." if board.all_sunk?
   end

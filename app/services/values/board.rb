@@ -65,50 +65,62 @@ class Board
     @ship_count -= 1
   end
 
-  def get_spaces_between(coordinate1, coordinate2)
-    return get_row_spaces_between(coordinate1, coordinate2) if same_row?(coordinate1, coordinate2)
-    return get_column_spaces_between(coordinate1, coordinate2) if same_column?(coordinate1, coordinate2)
-  end
-
-  def get_row_spaces_between(coordinate1, coordinate2)
-    columns = (get_smaller_column(coordinate1, coordinate2)..get_bigger_column(coordinate1, coordinate2)).to_a
-    columns.map { |column| get_row(coordinate1) + column }
-  end
-
-  def get_column_spaces_between(coordinate1, coordinate2)
-    rows = (get_smaller_row(coordinate1, coordinate2)..get_bigger_row(coordinate1, coordinate2)).to_a
-    rows.map { |row| row + get_column(coordinate1) }
-  end
-
-  def get_bigger_column(coordinate1, coordinate2)
-    get_column(coordinate1).to_i > get_column(coordinate2).to_i ? get_column(coordinate1) : get_column(coordinate2)
-  end
-
-  def get_smaller_column(coordinate1, coordinate2)
-    get_column(coordinate1).to_i < get_column(coordinate2).to_i ? get_column(coordinate1) : get_column(coordinate2)
-  end
-
-  def get_bigger_row(coordinate1, coordinate2)
-    get_row(coordinate1) > get_row(coordinate2) ? get_row(coordinate1) : get_row(coordinate2)
-  end
-
-  def get_smaller_row(coordinate1, coordinate2)
-    get_row(coordinate1) < get_row(coordinate2) ? get_row(coordinate1) : get_row(coordinate2)
-  end
-
-  def get_row(coordinate)
-    coordinate.split("")[0]
-  end
-
-  def get_column(coordinate)
-    coordinate[1..-1]
+  def contains_hit?(coordinate)
+    get_space(coordinate).hit?
   end
 
   def all_sunk?
-    @all_coordinates.count do |coord|
-      locate_space(coord).contents.class == Ship
-    end == 5
+    board_damage = @all_coordinates.count do |coord|
+      locate_space(coord).status == "Hit"
+    end
+    board_damage == 5
   end
+
+  def get_space(coordinate)
+    x = @board.flatten.select do |hash|
+      hash.first.first == coordinate
+    end
+    x.first.first.last
+  end
+
+  # def get_spaces_between(coordinate1, coordinate2)
+  #   return get_row_spaces_between(coordinate1, coordinate2) if same_row?(coordinate1, coordinate2)
+  #   return get_column_spaces_between(coordinate1, coordinate2) if same_column?(coordinate1, coordinate2)
+  # end
+
+  # def get_row_spaces_between(coordinate1, coordinate2)
+  #   columns = (get_smaller_column(coordinate1, coordinate2)..get_bigger_column(coordinate1, coordinate2)).to_a
+  #   columns.map { |column| get_row(coordinate1) + column }
+  # end
+  #
+  # def get_column_spaces_between(coordinate1, coordinate2)
+  #   rows = (get_smaller_row(coordinate1, coordinate2)..get_bigger_row(coordinate1, coordinate2)).to_a
+  #   rows.map { |row| row + get_column(coordinate1) }
+  # end
+  #
+  # def get_bigger_column(coordinate1, coordinate2)
+  #   get_column(coordinate1).to_i > get_column(coordinate2).to_i ? get_column(coordinate1) : get_column(coordinate2)
+  # end
+  #
+  # def get_smaller_column(coordinate1, coordinate2)
+  #   get_column(coordinate1).to_i < get_column(coordinate2).to_i ? get_column(coordinate1) : get_column(coordinate2)
+  # end
+
+  # def get_bigger_row(coordinate1, coordinate2)
+  #   get_row(coordinate1) > get_row(coordinate2) ? get_row(coordinate1) : get_row(coordinate2)
+  # end
+  #
+  # def get_smaller_row(coordinate1, coordinate2)
+  #   get_row(coordinate1) < get_row(coordinate2) ? get_row(coordinate1) : get_row(coordinate2)
+  # end
+  #
+  # def get_row(coordinate)
+  #   coordinate.split("")[0]
+  # end
+  #
+  # def get_column(coordinate)
+  #   coordinate[1..-1]
+  # end
 
   # def get_horizontal_length(coordinate1, coordinate2)
   #   return false if !same_row?(coordinate1, coordinate2)
@@ -127,13 +139,6 @@ class Board
   # def set_space_occupied(coordinate)
   #   get_space(coordinate).occupied = true
   # end
-
-  def get_space(coordinate)
-    x = @board.flatten.select do |hash|
-      hash.first.first == coordinate
-    end
-    x.first.first.last
-  end
 
   # def set_spaces_occupied(coordinate1, coordinate2)
     # same_row?(coordinate1, coordinate2) ? set_row_spaces_occupied(coordinate1, coordinate2) : set_column_spaces_occupied(coordinate1, coordinate2)
@@ -203,32 +208,28 @@ class Board
   # def contains?(coordinate)
   #   create_space_names.include?(coordinate)
   # end
+  #
+  # def same_row?(coordinate1, coordinate2)
+  #   get_row(coordinate1) == get_row(coordinate2)
+  # end
+  #
+  # def same_column?(coordinate1, coordinate2)
+  #   get_column(coordinate1) == get_column(coordinate2)
+  # end
+  #
+  # def space_occupied?(coordinate)
+  #    get_space(coordinate).occupied
+  # end
+  #
+  # def space_attacked?(coordinate)
+  #   get_space(coordinate).attacked?
+  # end
 
-  def same_row?(coordinate1, coordinate2)
-    get_row(coordinate1) == get_row(coordinate2)
-  end
+  # def contains_miss?(coordinate)
+  #   space_attacked?(coordinate) && !space_occupied?(coordinate)
+  # end
 
-  def same_column?(coordinate1, coordinate2)
-    get_column(coordinate1) == get_column(coordinate2)
-  end
-
-  def space_occupied?(coordinate)
-     get_space(coordinate).occupied
-  end
-
-  def space_attacked?(coordinate)
-    get_space(coordinate).attacked?
-  end
-
-  def contains_hit?(coordinate)
-    get_space(coordinate).hit?
-  end
-
-  def contains_miss?(coordinate)
-    space_attacked?(coordinate) && !space_occupied?(coordinate)
-  end
-
-  def first_column?(coordinate)
-    get_column(coordinate) == "1"
-  end
+  # def first_column?(coordinate)
+  #   get_column(coordinate) == "1"
+  # end
 end

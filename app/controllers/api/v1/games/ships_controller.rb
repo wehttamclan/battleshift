@@ -3,8 +3,6 @@ class Api::V1::Games::ShipsController < ApiController
     @game = Game.find(params[:game_id])
     @ship = Ship.new(ship_params[:ship_size])
 
-    @ship.place(ship_params[:start_space], ship_params[:end_space])
-    board_picker
     place_ship
 
     @board.ship_math(ship_params[:ship_size])
@@ -29,6 +27,9 @@ class Api::V1::Games::ShipsController < ApiController
   end
 
   def place_ship
+    @ship.place(ship_params[:start_space], ship_params[:end_space])
+    board_picker
+    
     ShipPlacer.new( board:       @board,
                     ship:        @ship,
                     start_space: @ship.start_space,

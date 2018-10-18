@@ -2,9 +2,9 @@ module Api
   module V1
     module Games
       class ShotsController < ApiController
+
         def create
           # IT CAN'T WORK WITH INACTIVE PLAYERS
-          # NEEDS TO PLAY WITH COMPUTER
           # NEEDS 401 error IF API IS INVALID
           # NEEDS 401 error IF GAME IS NOT YOURS
           target  = params[:shot][:target]
@@ -22,6 +22,7 @@ module Api
         def game
           Game.find(params[:game_id])
         end
+
       end
     end
   end
