@@ -5,6 +5,8 @@ class Board
               :ship_count,
               :all_coordinates
 
+  attr_accessor :ships
+
 
   def initialize(length)
     @all_coordinates = []
@@ -12,11 +14,6 @@ class Board
     @board = create_grid
     @ship_places = 5
     @ship_count = 2
-    @ships = []
-  end
-
-  def ships
-    @ships
   end
 
   def get_row_letters
@@ -105,6 +102,12 @@ class Board
 
   def get_column(coordinate)
     coordinate[1..-1]
+  end
+
+  def all_sunk?
+    @all_coordinates.count do |coord|
+      locate_space(coord).contents.class == Ship
+    end == 5
   end
 
   # def get_horizontal_length(coordinate1, coordinate2)

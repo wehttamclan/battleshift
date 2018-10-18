@@ -9,8 +9,6 @@ class Api::V1::Games::ShipsController < ApiController
 
     @board.ship_math(ship_params[:ship_size])
 
-    @board.ships << @board.get_spaces_between(@ship.start_space, @ship.end_space)
-
     @game.save
 
     render json: @game, message: ship_message
