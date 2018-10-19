@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"a51a15a3c1a744c42334e37f2fd62eef"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b0aa4bbf-538f-49ec-b6e8-f3627e2a0c83
+      X-Runtime:
+      - '0.031830'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 19:49:20 GMT
+- request:
+    method: get
+    uri: http://localhost:3000/api/v1/users/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"a51a15a3c1a744c42334e37f2fd62eef"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 5d4ab266-ad08-4d68-851d-bf30d71019c1
+      X-Runtime:
+      - '0.003820'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":1,"name":"Josiah Bartlet","email":"josiah@example.com"}'
+    http_version: 
+  recorded_at: Thu, 18 Oct 2018 19:51:25 GMT
+recorded_with: VCR 4.0.0
